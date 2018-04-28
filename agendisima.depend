@@ -1,0 +1,73 @@
+# depslib dependency file v1.0
+1524372273 source:c:\users\francisco mansilla\desktop\agendaloca\main.cpp
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<cmath>
+	<string.h>
+	<string>
+	"CSYSTEM/csystem.h"
+	"misFunciones.h"
+	"registroTelefonos.h"
+	"registroPersonas.h"
+	"menu.h"
+
+1399506914 c:\users\francisco mansilla\desktop\agendaloca\csystem\csystem.h
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<ctime>
+	<windows.h>
+	<unistd.h>
+
+1524780928 c:\users\francisco mansilla\desktop\agendaloca\misfunciones.h
+
+1524586908 c:\users\francisco mansilla\desktop\agendaloca\registropersonas.h
+
+1524582385 c:\users\francisco mansilla\desktop\agendaloca\menu.h
+
+1524786057 c:\users\francisco mansilla\desktop\agendaloca\registrotelefonos.h
+
+1524931598 source:/home/iintrepyd0/agendaLoca-master/main.cpp
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<cmath>
+	<string.h>
+	<string>
+	"CSYSTEM/csystem.h"
+	"prototipos.h"
+
+1524790377 /home/iintrepyd0/agendaLoca-master/CSYSTEM/csystem.h
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<ctime>
+	<windows.h>
+	<unistd.h>
+
+1524932483 /home/iintrepyd0/agendaLoca-master/prototipos.h
+	"registroTelefonos.h"
+	"registroPersonas.h"
+	"misFunciones.h"
+	"menu.h"
+
+1524931706 /home/iintrepyd0/agendaLoca-master/registroTelefonos.h
+
+1524932519 /home/iintrepyd0/agendaLoca-master/registroPersonas.h
+	"prototipos.h"
+
+1524931907 /home/iintrepyd0/agendaLoca-master/misFunciones.h
+	"menu.h"
+	"registroPersonas.h"
+	"registroPersonasEncontradas.h"
+	"registroTelefonos.h"
+
+1524932199 /home/iintrepyd0/agendaLoca-master/menu.h
+	"misFunciones.h"
+	"registroPersonas.h"
+	"registroPersonasEncontradas.h"
+	"registroTelefonos.h"
+
+1524790377 /home/iintrepyd0/agendaLoca-master/registroPersonasEncontradas.h
+
