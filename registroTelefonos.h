@@ -1,6 +1,6 @@
 #ifndef REGISTROTELEFONOS_H_INCLUDED
 #define REGISTROTELEFONOS_H_INCLUDED
-
+#include "CSYSTEM/csystem.h"
 
 //==============================================================================
 // DECLARACION DEL ESPACIO DE NOMBRES POR DEFECTO
@@ -77,7 +77,8 @@ void modificar_telefono(persona per)
 // PARAMETROS: telefono tel.
 // DEVUELVE  : NADA.
 //---------------------------------------------------------------------------
-bool guardarTel(telefono tel){
+bool guardarTel(telefono tel)
+{
 
     FILE *arch_tel;
     arch_tel= fopen(ruta_telefono,"ab");
@@ -96,14 +97,14 @@ bool guardarTel(telefono tel){
 //// PARAMETROS: persona per, telefono *tel.
 //// DEVUELVE  : NADA.
 ////---------------------------------------------------------------------------
-void cargarTelefono(int id_persona, telefono *tel){
+void cargarTelefono(int id_persona, telefono *tel)
+{
 
-    cout<< " Ingrese el TIPO del numero: ";
+    cout<< "Ingrese el TIPO del numero: ";
     sys::getline( tel->tipo, 50);
-    cout<< " Ingrese el NUMERO del contacto: ";
-    sys::getline(tel->numero, 10);
+    cout<< "Ingrese el NUMERO del contacto: ";
+    sys::getline( tel->numero, 50);
     bool esNum = false;
-    //TODO: brackpoint
     while(!esNum)
     {
         if(esNumero(tel->numero) && (strlen(tel->numero) >= 8 && (strlen(tel->numero) <= 10)))
@@ -135,26 +136,30 @@ void cargarTelefonos(int id_persona)
 {
     telefono tel;
     char key;
-    do{
-        cout<< "\nPARA CARGAR UN NUEMRO AL CONTACTO PRESIONE 'C'...\n";
+    do
+    {
+        cout<< "\nPARA CARGAR UN NUMERO AL CONTACTO PRESIONE 'C' o presione 'S' para salir: ";
         key = sys::getch();
-        //cin.ignore();
-        if(key == 'c' || key == 'C'){
-            if(ID_tel != NULL){
+        cin.ignore();
+        if(key == 'c' || key == 'C')
+        {
+            if(ID_tel != NULL)
+            {
                 cargarTelefono(id_persona, &tel);
-                if(guardarTel(tel)){
-                    cout << "SE GUARDO EL TELEFONO CORRECTAMENTE...";
-                    sys::msleep(1);
+                if(guardarTel(tel))
+                {
+                    cout <<"EL TELEFONO "<<tel.tipo<<" : "<<tel.numero<<" SE GUARDO CORRECTAMENTE"<<endl;
                 }
-                cout << "\nPARA FINALIZAR LA CARGA DE TELEFONOS PRESIONE 'S' "<<endl;
             }
         }
-        key = sys::getch();
-
+        else if(key == 's' || key == 'S')
+        {
+            break;
+        }
         if(key == 's' || key == 'S')
             break;
-
-    }while(key != 's' || key != 'S');
+    }
+    while(key != 's' || key != 'S');
 }
 
 ////===========================================================================
@@ -163,13 +168,15 @@ void cargarTelefonos(int id_persona)
 //// PARAMETROS: telefono tel
 //// DEVUELVE  : NADA.
 ////---------------------------------------------------------------------------
-void mostrarTelefono(telefono tel){
-    cout<< " -----------------------------------"<<endl;
-    cout<< " ID TELEFONO: "<< tel.id_telefono << endl;
-    cout<< " -----------------------------------"<<endl;
-    cout<< " TELEFONO TIPO: " << tel.tipo << endl;
-    cout<< " NUMERO       : " << tel.numero << endl;
-    cout<< " -----------------------------------"<<endl;
+void mostrarTelefono(telefono tel)
+{
+    cout<< "|============================================|"<<endl;
+    cout<< "|IDT|TIPO_TELEFONO        |NUMERO            |"<<endl;
+    mostrarIDenTabla(tel.id_telefono);
+    mostrarEspacioTextoEnTabla(tel.tipo, 20);
+    mostrarEspacioTextoEnTabla(tel.numero, 17);
+    cout << "|\n|============================================|";
+    cout << endl;
 }
 
 ////===========================================================================
@@ -178,15 +185,16 @@ void mostrarTelefono(telefono tel){
 //// PARAMETROS: int id_persona.
 //// DEVUELVE  : NADA.
 ////---------------------------------------------------------------------------
-void mostrarTelefonosByContacto(int id_persona){
+void mostrarTelefonosByContacto(int id_persona)
+{
 
     FILE *arch_tel;
     arch_tel = fopen(ruta_telefono,"rb");
     if(arch_tel == NULL)
         exit(98);
     telefono tel;
-    while(fread(&tel, sizeof(telefono), 1, arch_tel)){
-
+    while(fread(&tel, sizeof(telefono), 1, arch_tel))
+    {
         if (tel.id_persona == id_persona && !tel.eliminado)
             mostrarTelefono(tel);
     }
@@ -199,14 +207,16 @@ void mostrarTelefonosByContacto(int id_persona){
 //// PARAMETROS: int id_persona
 //// DEVUELVE  : NADA.
 ////---------------------------------------------------------------------------
-void mostrarTelefonosEliminadosByContacto(int id_persona){
+void mostrarTelefonosEliminadosByContacto(int id_persona)
+{
 
     FILE *arch_tel;
     arch_tel = fopen(ruta_telefono,"rb");
     if(arch_tel == NULL)
         exit(98);
     telefono tel;
-    while(fread(&tel, sizeof(telefono), 1, arch_tel)){
+    while(fread(&tel, sizeof(telefono), 1, arch_tel))
+    {
 
         if (tel.id_persona == id_persona && tel.eliminado)
             mostrarTelefono(tel);
@@ -266,38 +276,39 @@ void editar_telefono(persona per, int id_telefono, int opcion, char* nuevo_numer
     telefono tel;
     while(fread(&tel, sizeof(telefono), 1, arch_tel))
     {
-        if( tel.id_persona == per.id_persona && id_telefono == tel.id_telefono && tel.eliminado)
-            modificado = true;
-        if(modificado){
-                //TODO: aca break
-                fseek(arch_tel,sizeof(tel)*tel.id_telefono-1, SEEK_SET);
-                fwrite(&tel, sizeof(telefono), 1, arch_tel);
-                fclose(arch_tel);
-                sys::msleep(2);
-        }
-        switch(opcion){
-            case 1:{
+        if(tel.id_persona == per.id_persona && id_telefono == tel.id_telefono && !tel.eliminado)
+        {
+            switch(opcion)
+            {
+            case 1:
+            {
                 tel.eliminado = true;
-                cout<< "Telefono Eliminado"<<endl;
-            }break;
+                fseek(arch_tel,sizeof(tel)*(tel.id_telefono - 1), SEEK_SET);
+                fwrite(&tel, sizeof(telefono), 1, arch_tel);
+                cout<< "seba: Telefono Eliminado"<<endl;
+                modificado=true;
+                fclose(arch_tel);
+            }
+            break;
 
-            case 2:{
+            case 2:
+            {
                 strcpy(tel.tipo, nuevo_tipo);
                 cout<< "Tipo de telefono Modificado"<<endl;
-            }break;
+            }
+            break;
 
-            case 3:{
+            case 3:
+            {
                 strcpy(tel.numero, nuevo_numero);
                 cout<< "Numero de telefono Modificado"<<endl;
-            }break;
+            }
+            break;
+            }
 
-            case 4:{
-                tel.eliminado = false; //TODO: revisar
-                cout<< "Telefono Recuperado"<<endl;
-            }break;
         }
     }
-    fclose(arch_tel);
+
     if(!modificado)
         cout<<"El ID de telefono no pertenece a este contacto o no existe"<<endl;
     cin.get();

@@ -12,13 +12,40 @@
 #include "registroPersonas.h"
 #include "registroPersonasEncontradas.h"
 #include "registroTelefonos.h"
+#include <windows.h>
+#include <conio.h>
 //==============================================================================
 // DECLARACION DEL ESPACIO DE NOMBRES POR DEFECTO
 //------------------------------------------------------------------------------
 using namespace std;
 //****************************************************************************
 
-
+////===========================================================================
+//// FUNCION   : void AltEnter()
+//// ACCION    : MAXIM pantalla
+//// PARAMETROS: NADA.
+//// DEVUELVE  : NADA.
+////---------------------------------------------------------------------------
+void AltEnter()
+{
+    keybd_event(VK_MENU,
+                0x38,
+                0,
+                0);
+    keybd_event(VK_RETURN,
+                0x1c,
+                0,
+                0);
+    keybd_event(VK_RETURN,
+                0x1c,
+                KEYEVENTF_KEYUP,
+                0);
+    keybd_event(VK_MENU,
+                0x38,
+                KEYEVENTF_KEYUP,
+                0);
+    return;
+}
 
 ////===========================================================================
 //// FUNCION   :bool buscar(int opc).
@@ -53,6 +80,8 @@ bool buscar(int opc)
                 if ( buscar_subcadena(per.apellido, sub_cadena ) != -1 )
                 {
                     mostrarContacto(per);
+                    //cout<<"presione enter para continuar..."<<endl;
+                    //cin.get();
                     retorno = true;
                     encontrado = 1;
                 }
@@ -64,6 +93,8 @@ bool buscar(int opc)
                 if ( buscar_subcadena(per.nombre, sub_cadena ) != -1 )
                 {
                     mostrarContacto(per);
+                    cout<<"presione enter para continuar..."<<endl;
+                    cin.get();
                     retorno = true;
                     encontrado = 1;
                 }
@@ -75,6 +106,8 @@ bool buscar(int opc)
                 if ( buscar_subcadena(per.alias, sub_cadena ) != -1 )
                 {
                     mostrarContacto(per);
+                    cout<<"presione enter para continuar..."<<endl;
+                    cin.get();
                     retorno = true;
                     encontrado = 1;
                 }
@@ -87,13 +120,15 @@ bool buscar(int opc)
             } break;
             }
 
-            if (encontrado  == 1)
+            if (encontrado == 1)
+            {
+                // fseek(arch_per, sizeof(persona)*(per.id_persona-1),SEEK_SET);
                 fwrite(&per, sizeof(per), 1, arch_per_encotradas);
+            }
+
         }
 
     }
-
-    cin.get();
 
     fclose(arch_per);
     fclose(arch_per_encotradas);
@@ -146,7 +181,7 @@ void contar_ID()
 bool esNumero(char* cadena)//* pasar por puntero porque es una cadena/vector.
 {
     int i = 0;
-    while(cadena[i] != '\0' || strlen(cadena) > 1) //'\0' fin de cadena.
+    while(cadena[i] != '\0') //'\0' fin de cadena.
     {
         if(cadena[i] < '1' && cadena[i] > '9')
             return false;
@@ -155,37 +190,111 @@ bool esNumero(char* cadena)//* pasar por puntero porque es una cadena/vector.
     return true;
 }
 
+//=============================================================================
+// FUNCION   : void inicializar_vector(int *vec,int tam)
+// ACCION    : valida si la cadena ingresada es numero.
+// PARAMETROS: int *vec,int tam
+// DEVUELVE  : nada
+//-----------------------------------------------------------------------------
+
+void inicializar_vector(int *vec,int tam)
+{
+    for(int i=0; i<tam; i++)
+    {
+        vec[i]=0;
+    }
+}
+////===========================================================================
+//// FUNCION   : int retorna_encontrados(struct *persona per)
+//// ACCION    :
+//// PARAMETROS: NADA.
+//// DEVUELVE  : NADA.
+////---------------------------------------------------------------------------
+int retorna_encontrados(struct persona per[][5])
+{
+    int cont=0, i=0;
+    FILE *arch_per;
+    persona reg;
+    arch_per = fopen(ruta_persona,"rb");
+    if(arch_per == NULL)
+        exit(99);
+    while( fread(&reg, sizeof(persona), 1, arch_per))
+    {
+        if(reg.eliminado==false)
+        {
+
+            per[i][cont]=reg;
+            cont=cont+1;
+            if(cont==5)
+            {
+                i=i+1;
+                cont=0;
+            }
+        }
+    }
+    fclose(arch_per);
+    return cont;
+}
+
+void inicializar_matriz(struct persona per[][5], int fila, int columna)
+{
+    int f=0,c=0;
+    for(c=0; c<columna; c++)
+    {
+        for(f=0; f<fila; f++)
+        {
+            per[f][c].id_persona=-1;
+        }
+    }
+}
 ////===========================================================================
 //// FUNCION   : void mostrar_contactos().
 //// ACCION    :
 //// PARAMETROS: NADA.
 //// DEVUELVE  : NADA.
 ////---------------------------------------------------------------------------
-void mostrar_contactos(){
-    int cont = 0;
+void mostrar_contactos()
+{
+    int pagina = 0, i=0,tecla=-1;
+    bool flag=true;
     sys::cls();
+    persona per[100][5];
+    inicializar_matriz(per,100,5);
+    int	cont = retorna_encontrados(per);
+    while(flag)
+    {
+        mostrarContacto(per[pagina][i]);
+        mostrarTelefonosByContacto(per[pagina][i].id_persona);
+        i++;
 
-    FILE *arch_per;
-    arch_per = fopen(ruta_persona,"rb");
-    if(arch_per == NULL)
-        exit(99);
-    persona per;
-    while( fread(&per, sizeof(persona), 1, arch_per)){
-
-        if(!per.eliminado){
-            mostrarContacto(per);
-            mostrarTelefonosByContacto(per.id_persona);
-        }
-        cout<< " ==================================="<<endl<<endl;
-        cont ++;
-        if(cont == 5){
-            cin.get();
-            sys::cls();
-            cont = 0;
+        if(i==5 || per[pagina][i].id_persona ==-1)
+        {
+            cout<<"\t\t\t <- Anterior \t\t\t Siguiente -> \t\t\t Esc=Salir";
+            while(true)
+            {
+                tecla=getch();
+                if(tecla==77 && per[pagina][i+1].id_persona != -1 )  //siguiente
+                {
+                    pagina=pagina+1;
+                    i=0;
+                    sys::cls();
+                    break;
+                }
+                if(tecla==75 && pagina-1>=0)  //anterior
+                {
+                    pagina=pagina-1;
+                    i=0;
+                    sys::cls();
+                    break;
+                }
+                if(tecla==27)
+                {
+                    flag=false;
+                    break;
+                }
+            }
         }
     }
-    fclose(arch_per);
-    cin.get();
 }
 
 //===========================================================================
@@ -198,16 +307,16 @@ void mostrar_opcion_busqueda(int opc)
 {
     switch (opc)
     {
-        case 1:
-            cout<<"Ingrese Apellido:  ";
+    case 1:
+        cout<<"Ingrese Apellido:  ";
         break;
 
-        case 2:
-            cout<<"Ingrese Nombre:  ";
+    case 2:
+        cout<<"Ingrese Nombre:  ";
         break;
 
-        case 3:
-            cout<<"Ingrese Alias:  ";
+    case 3:
+        cout<<"Ingrese Alias:  ";
         break;
     }
 }
@@ -256,7 +365,8 @@ void strToUpper(char * cadena)
 //// PARAMETROS:
 //// DEVUELVE  : -1 si no encuentra la subcadena
 ////---------------------------------------------------------------------------
-bool CheckSubstring(char *firstString, char *secondString){
+bool CheckSubstring(char *firstString, char *secondString)
+{
 
     strToUpper(firstString);
     strToUpper(secondString);
@@ -264,16 +374,19 @@ bool CheckSubstring(char *firstString, char *secondString){
     if(strlen(secondString) > strlen(firstString))
         return false;
 
-    for (int i = 0; i < strlen(firstString); i++){
+    for (int i = 0; i < strlen(firstString); i++)
+    {
         int j = 0;
-        if(firstString[i] == secondString[j]){
-            while (firstString[i] == secondString[j] && j < strlen(secondString)){
+        if(firstString[i] == secondString[j])
+        {
+            while (firstString[i] == secondString[j] && j < strlen(secondString))
+            {
                 j++;
                 i++;
             }
 
             if (j == strlen(secondString))
-                    return true;
+                return true;
         }
     }
     return false;
@@ -346,20 +459,17 @@ void preguntar_id(int opc)
 
     while (encontrar == 2 && id_contacto != 0)
     {
-        while(fread (&per, sizeof(persona), 1, arch_per_encotradas) && (id_contacto == per.id_persona))
+        while(fread (&per, sizeof(persona), 1, arch_per_encotradas))
         {
-            sys::cls();
-            mostrarContacto(per);
-
-            cin.get();
-
-            if (opc == 3)
-                eliminar_registro(per);
-            else
-                modificar_registro(per);
-
-            encontrar = 1;
-            break;
+            if(id_contacto == per.id_persona)
+            {
+                sys::cls();
+                if (opc == 3)
+                    eliminar_registro(per);
+                else
+                    modificar_registro(per);
+                encontrar=1;
+            }
         }
         if( encontrar == 2)
         {
@@ -391,39 +501,39 @@ void mostrar_contactosEncontrados()
 
     while(fread(&per, sizeof(persona), 1, arch_per_enc))
     {
-            cout<< " ==================================="<<endl;
-            cout<< "           ID CONTACTO: "<< per.id_persona << endl;
-            cout<< " ==================================="<<endl;
-            cout<< " NOMBRE  : " << per.nombre << endl;
-            cout<< " APELLIDO: " << per.apellido << endl;
-            cout<< " CORREO  : " << per.email << endl;
-            cout<< " APODO   : " << per.alias << endl;
+        cout<< " ==================================="<<endl;
+        cout<< "           ID CONTACTO: "<< per.id_persona << endl;
+        cout<< " ==================================="<<endl;
+        cout<< " NOMBRE  : " << per.nombre << endl;
+        cout<< " APELLIDO: " << per.apellido << endl;
+        cout<< " CORREO  : " << per.email << endl;
+        cout<< " APODO   : " << per.alias << endl;
 
-            FILE *arch_tel;
-            arch_tel = fopen(ruta_telefono,"rb");
-            if(arch_tel == NULL)
-                exit(98);
-            telefono tel;
+        FILE *arch_tel;
+        arch_tel = fopen(ruta_telefono,"rb");
+        if(arch_tel == NULL)
+            exit(98);
+        telefono tel;
 
-            while(fread(&tel, sizeof(telefono), 1, arch_tel))
+        while(fread(&tel, sizeof(telefono), 1, arch_tel))
+        {
+            if (tel.eliminado != true)
             {
-                if (tel.eliminado != true)
+                if(per.id_persona == tel.id_persona)
                 {
-                    if(per.id_persona == tel.id_persona)
-                    {
-                        cout<< " -----------------------------------"<<endl;
-                        cout<< " ID TELEFONO: "<< tel.id_telefono << endl;
-                        cout<< " -----------------------------------"<<endl;
-                        cout<< " TELEFONO TIPO: " << tel.tipo << endl;
-                        cout<< " NUMERO       : " << tel.numero << endl;
-                    }
+                    cout<< " -----------------------------------"<<endl;
+                    cout<< " ID TELEFONO: "<< tel.id_telefono << endl;
+                    cout<< " -----------------------------------"<<endl;
+                    cout<< " TELEFONO TIPO: " << tel.tipo << endl;
+                    cout<< " NUMERO       : " << tel.numero << endl;
                 }
-
             }
-            fclose(arch_tel);
-            cout<< " ==================================="<<endl<<endl;
-            //cont ++;
+
         }
+        fclose(arch_tel);
+        cout<< " ==================================="<<endl<<endl;
+        //cont ++;
+    }
     fclose(arch_per_enc);
 }
 

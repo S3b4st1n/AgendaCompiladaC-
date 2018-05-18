@@ -45,7 +45,7 @@ void recuperar_contacto(int id_contacto)
                 fclose(arch_per);
                 sys::cls();
                 cout<<"Contacto recuperado:   "<<endl<<endl;
-                mostrar_contacto(per);
+                mostrarContacto(per);
                 break;
             }
             pos++;
@@ -62,7 +62,7 @@ void recuperar_contacto(int id_contacto)
 }
 
 ////===========================================================================
-//// FUNCION   : void modificar_contacto().
+//// FUNCION   : void modificar_lista_contactos(persona per, int id_telefono).
 //// ACCION    : Agregar telefonos,
 //// PARAMETROS: NADA.
 //// DEVUELVE  : NADA.
@@ -142,33 +142,14 @@ void mostrar_contactos_eliminados()
     {
         if(per.eliminado != false)
         {
-            cout<< " ==================================="<<endl;
-            cout<< "           ID CONTACTO: "<< per.id_persona << endl;
-            cout<< " ==================================="<<endl;
-            cout<< " NOMBRE  : " << per.nombre << endl;
-            cout<< " APELLIDO: " << per.apellido << endl;
-            cout<< " CORREO  : " << per.email << endl;
-            cout<< " APODO   : " << per.alias << endl;
-
+            mostrarContacto(per);
             fseek(arch_tel, sizeof(telefono), SEEK_SET);
-            //fseek(arch_tel,-sizeof(tel),1);
             while(fread(&tel, sizeof(telefono), 1, arch_tel))
             {
-                if (tel.eliminado != false)
-                {
-                    if(per.id_persona == tel.id_persona)
-                    {
-                        cout<< " -----------------------------------"<<endl;
-                        cout<< " ID TELEFONO: "<< tel.id_telefono << endl;
-                        cout<< " -----------------------------------"<<endl;
-                        cout<< " TELEFONO TIPO: " << tel.tipo << endl;
-                        cout<< " NUMERO       : " << tel.numero << endl;
-                    }
-                }
-
+                if(tel.eliminado)
+                mostrarTelefono(tel);
             }
             fclose(arch_tel);
-            cout<< " ==================================="<<endl<<endl;
             cont ++;
         }
     }
@@ -184,10 +165,8 @@ void mostrar_contactos_eliminados()
         cout<<"INGRESE EL ID DEL CONTACTO A RECUPERAR"<<endl;
         cin>>id_contacto;
         cin.ignore();
-
         recuperar_contacto(id_contacto);
     }
-    //cin.get();
 }
 
 ////===========================================================================
@@ -214,7 +193,7 @@ void mostrar_contacto(persona per)
     while(fread(&tel, sizeof(telefono), 1, arch_tel))
     {
         if(per.id_persona == tel.id_persona &&
-                tel.eliminado != true)
+                !tel.eliminado)
         {
             cout<< " -----------------------------------"<<endl;
             cout<< " ID TELEFONO: "<< tel.id_telefono << endl;
@@ -236,67 +215,74 @@ void mostrar_contacto(persona per)
 ////---------------------------------------------------------------------------
 void modificar_contacto(persona per)
 {
-    int opci;
+    char opci;
     bool salir = false;
     char nuevo_dato[50];
 
-    sys::cls();
-
-    mostrarContacto(per);
-    cout<<endl<<endl;
-
     while (!salir)
     {
+        sys::cls();
+
+        mostrarContacto(per);
         menu_mod_contacto();
 
         cin>>opci;
         cin.ignore();
+        if(esNumero(&opci))
+        {
+            switch(opci)
+            {
+            case '1':
+            {
+                cout<<"Ingrese el nuevo Apellido  : ";
+                sys::getline(nuevo_dato, 50);
+                modificar_dato_persona(1, per.id_persona, nuevo_dato);
+            }
+            break;
 
-        switch(opci)
-        {
-        case 1:
-        {
-            cout<<"Ingrese el nuevo Apellido  : ";
-            sys::getline(nuevo_dato, 50);
-            modificar_dato_persona(1, per.id_persona, nuevo_dato);
-        }
-        break;
+            case '2':
+            {
+                cout<<"Ingrese el nuevo Nombre  : ";
+                sys::getline(nuevo_dato, 50);
+                modificar_dato_persona(2, per.id_persona, nuevo_dato);
+            }
+            break;
 
-        case 2:
-        {
-            cout<<"Ingrese el nuevo Nombre  : ";
-            sys::getline(nuevo_dato, 50);
-            modificar_dato_persona(2, per.id_persona, nuevo_dato);
-        }
-        break;
+            case '3':
+            {
+                cout<<"Ingrese el nuevo Alias  : ";
+                sys::getline(nuevo_dato, 50);
+                modificar_dato_persona(3, per.id_persona, nuevo_dato);
+            }
+            break;
 
-        case 3:
-        {
-            cout<<"Ingrese el nuevo Alias  : ";
-            sys::getline(nuevo_dato, 50);
-            modificar_dato_persona(3, per.id_persona, nuevo_dato);
-        }
-        break;
+            case '4':
+            {
+                cout<<"Ingrese el nuevo Correo  : ";
+                sys::getline(nuevo_dato, 50);
+                modificar_dato_persona(4, per.id_persona, nuevo_dato);
+            }
+            break;
 
-        case 4:
-        {
-            cout<<"Ingrese el nuevo Correo  : ";
-            sys::getline(nuevo_dato, 50);
-            modificar_dato_persona(4, per.id_persona, nuevo_dato);
-        }
-        break;
+            case '0':
+            {
+                salir = true;
+            }
+            break;
 
-        case 0:
-        {
-            salir = true;
-        }
-        break;
+            default:
+            {
+                cout<<"Opcion incorrecta presione enter para continuar y ingrese una opcion valida"<<endl;
+                cin.get();
+            }
+            break;
+            }
 
-        default:
-        {
-            cout<<"Opcion incorrecta"<<endl;
         }
-        break;
+        else
+        {
+            cout<<"Opcion incorrecta presione enter para continuar y ingrese una opcion valida"<<endl;
+            cin.get();
         }
     }
 }
@@ -309,34 +295,32 @@ void modificar_contacto(persona per)
 ////---------------------------------------------------------------------------
 void modificar_registro(persona per)
 {
-    int id_telefono, opci;
+    int id_telefono;
+    char opci;
     bool salir = false;
 
     while (!salir)
     {
-
+        sys::cls();
+        mostrarContacto(per);
         menu_mod();
         cin>>opci;
         cin.ignore();
-
-
-
-
         switch(opci)
         {
-        case 1:
+        case '1':
         {
             modificar_contacto(per);
         }
         break;
 
-        case 2:
+        case '2':
         {
             modificar_telefono(per);
         }
         break;
 
-        case 0:
+        case '0':
         {
             salir = true;
         }
@@ -344,10 +328,8 @@ void modificar_registro(persona per)
 
         default:
         {
-            cout<<"Opcion incorrecta"<<endl;
-            sys::msleep(2);
-            cin>>opci;
-            cin.ignore();
+            cout<<"Opcion incorrecta presione enter e ingrese una opcion valida..."<<endl;
+            cin.get();
         }
         }
     }
@@ -388,11 +370,11 @@ void modificar_dato_persona(int opc, int id_persona, char* nuevo_dato)
             fwrite(&per, sizeof(persona),1,arch_per);
 
             if (opc == 5)
-                cout<<"Contacto Eliminado"<<endl;
+                cout<<"Contacto Eliminado presione enter para continuar...";
             else
-                cout<<"Contacto Modificado"<<endl;
-
-            sys::msleep(2);
+            {
+                cout<<"Contacto Modificado presione enter para continuar...";
+            }
             break;
         }
     }
@@ -407,7 +389,8 @@ void modificar_dato_persona(int opc, int id_persona, char* nuevo_dato)
 // PARAMETROS: persona per.
 // DEVUELVE  : NADA.
 //---------------------------------------------------------------------------
-bool guardar_persona(persona per){
+bool guardar_persona(persona per)
+{
 
     FILE *arch_per;
     arch_per = fopen(ruta_persona,"ab");
@@ -435,8 +418,6 @@ void eliminar_registro(persona per)
     sys::cls();
 
     mostrarContacto(per);
-    cout<<endl<<endl;
-
     while (!salir)
     {
         menu_eliminar_registro();
@@ -448,8 +429,6 @@ void eliminar_registro(persona per)
         {
         case 1:
         {
-
-
             modificar_dato_persona(5, per.id_persona, "A");
             salir = true;
         }
@@ -490,27 +469,26 @@ void eliminar_registro(persona per)
 // PARAMETROS: persona per.
 // DEVUELVE  : NADA.
 //---------------------------------------------------------------------------
-void datos_persona(persona *per){
-
-    //TODO: dowhile para cada campo, long minima
-    cout<< " Ingrese el NOMBRE del contacto: ";
-    sys::getline(per->nombre, 50);
-
-    cout<< " Ingrese el APELLIDO del contacto: ";
-    sys::getline(per->apellido, 50);
-
-    cout<< " Ingrese el APODO del contacto: ";
-    sys::getline(per->alias, 50);
-
-    cout<< " Ingrese el DOMICILIO del contacto: ";
-    sys::getline(per->domicilio, 50);
-
-    cout<< " Ingrese el CORREO del contacto: ";
-    sys::getline(per->email, 50);
-
-    per->eliminado=false;
-
-    per->id_persona = ID_per;
+void datos_persona(persona *per)
+{
+    do
+    {
+        sys::cls();
+        if(!per->eliminado) cout<<"Ingreso NOMBRE o APELLIDO vacio vuelva a cargar..."<<endl;
+        cout<< " Ingrese el NOMBRE del contacto: ";
+        sys::getline(per->nombre, 50);
+        cout<< " Ingrese el APELLIDO del contacto: ";
+        sys::getline(per->apellido, 50);
+        cout<< " Ingrese el APODO del contacto: ";
+        sys::getline(per->alias, 50);
+        cout<< " Ingrese el DOMICILIO del contacto: ";
+        sys::getline(per->domicilio, 50);
+        cout<< " Ingrese el CORREO del contacto: ";
+        sys::getline(per->email, 50);
+        per->eliminado=false;
+        per->id_persona = ID_per;
+    }
+    while(strcmp(per->nombre,"\0")==0|| strcmp(per->apellido,"\0")==0);
 }
 
 ////===========================================================================
@@ -519,34 +497,56 @@ void datos_persona(persona *per){
 //// PARAMETROS: NADA.
 //// DEVUELVE  : NADA.
 ////---------------------------------------------------------------------------
-void cargar_persona(){
+void cargar_persona()
+{
 
     sys::cls();
     persona per;
     datos_persona(&per);
     if(guardar_persona(per))
-    cargarTelefonos(per.id_persona);
+        cargarTelefonos(per.id_persona);
     sys::cls();
 
 }
+void mostrarIDenTabla(int id)
+{
 
+    if(id < 10)
+        cout<< "|" << id << "  ";
+    else
+        cout<< "|" << id << " ";
+}
+
+void mostrarEspacioTextoEnTabla(char *texto, int cant)
+{
+
+    cout <<  "|" << texto;
+    for(int i = cant; i > (strlen(texto)-1); i--)
+        cout << " ";
+}
 ////===========================================================================
 //// FUNCION   : void mostrarContacto(persona per){
 //// ACCION    : muestra detalle contacto
 //// PARAMETROS: persona per
 //// DEVUELVE  : NADA.
 ////---------------------------------------------------------------------------
-void mostrarContacto(persona per){
+void mostrarContacto(persona per)
+{
 
-        cout<< " ==================================="<<endl;
-        cout<< "           ID CONTACTO: "<< per.id_persona << endl;
-        cout<< " ==================================="<<endl;
-        cout<< " NOMBRE  : " << per.nombre << endl;
-        cout<< " APELLIDO: " << per.apellido << endl;
-        cout<< " CORREO  : " << per.email << endl;
-        cout<< " APODO   : " << per.alias << endl;
-        cout<< " ==================================="<<endl;
+
+    cout<< "|=========================================================================================================================|"<<endl;
+    cout<< "|ID |APELLIDO                  |NOMBRE                    |APODO                     |CORREO                              |"<<endl;
+    mostrarIDenTabla(per.id_persona);
+    mostrarEspacioTextoEnTabla(per.apellido, 25);
+    mostrarEspacioTextoEnTabla(per.nombre, 25);
+    mostrarEspacioTextoEnTabla(per.alias, 25);
+    mostrarEspacioTextoEnTabla(per.email, 35);
+    cout << "|\n|=========================================================================================================================|";
+    cout << endl;
+    //cout<< " ======================================================================================|"<<endl;
+
 }
+
 
 ////===========================================================================
 //// FUNCION   : void modificar_dato_persona(int opc, int id_persona, char* nuevo_dato).
@@ -554,30 +554,35 @@ void mostrarContacto(persona per){
 //// PARAMETROS: int opc, int id_persona, char* nuevo_dato
 //// DEVUELVE  : NADA.
 ////---------------------------------------------------------------------------
-void modificarContacto(int opc, int id_persona, char* nuevo_dato){//modificar_dato_persona
+void modificarContacto(int opc, int id_persona, char* nuevo_dato) //modificar_dato_persona
+{
 
     FILE *arch_per = fopen(ruta_persona, "rb+" );
     if(arch_per == NULL)
         exit(99);
     persona per;
 
-    while(fread(&per, sizeof(persona),1,arch_per)){
-        if ( id_persona == per.id_persona && !per.eliminado){
-            switch(opc){
-                case 1:
-                    strcpy(per.apellido, nuevo_dato);
+
+    while(fread(&per, sizeof(persona),1,arch_per))
+    {
+        if ( id_persona == per.id_persona && !per.eliminado)
+        {
+            switch(opc)
+            {
+            case 1:
+                strcpy(per.apellido, nuevo_dato);
                 break;
-                case 2:
-                    strcpy(per.nombre, nuevo_dato);
+            case 2:
+                strcpy(per.nombre, nuevo_dato);
                 break;
-                case 3:
-                    strcpy(per.alias, nuevo_dato);
+            case 3:
+                strcpy(per.alias, nuevo_dato);
                 break;
-                case 4:
-                    strcpy(per.email, nuevo_dato);
+            case 4:
+                strcpy(per.email, nuevo_dato);
                 break;
-                case 5:
-                    per.eliminado = true;
+            case 5:
+                per.eliminado = true;
                 break;
             }
             //TODO: aca breakpoint
@@ -586,15 +591,22 @@ void modificarContacto(int opc, int id_persona, char* nuevo_dato){//modificar_da
             fclose(arch_per);
 
             if (opc == 5)
+            {
                 cout<<"Contacto Eliminado"<<endl;
+                cin.get();
+
+            }
+
             else
+            {
                 cout<<"Contacto Modificado"<<endl;
-            sys::msleep(2);
-            break;
+                cin.get();
+
+            }
+
         }
     }
     fclose(arch_per);
-    cin.get();
 }
 
 ////===========================================================================
@@ -610,7 +622,6 @@ void opciones_modificacion_contacto(persona per)
     char nuevo_dato[50];
     sys::cls();
     mostrarContacto(per);
-    cout<<endl<<endl;
 
     while (!salir)
     {
@@ -620,36 +631,44 @@ void opciones_modificacion_contacto(persona per)
 
         switch(opci)
         {
-            case 1:{
-                cout<<"Ingrese el nuevo Apellido  : ";
-                sys::getline(nuevo_dato, 50);
-                modificarContacto(1, per.id_persona, nuevo_dato);
-            }break;
+        case 1:
+        {
+            cout<<"Ingrese el nuevo Apellido  : ";
+            sys::getline(nuevo_dato, 50);
+            modificarContacto(1, per.id_persona, nuevo_dato);
+        }
+        break;
 
-            case 2:{
-                cout<<"Ingrese el nuevo Nombre  : ";
-                sys::getline(nuevo_dato, 50);
-                modificarContacto(2, per.id_persona, nuevo_dato);
-            }break;
+        case 2:
+        {
+            cout<<"Ingrese el nuevo Nombre  : ";
+            sys::getline(nuevo_dato, 50);
+            modificarContacto(2, per.id_persona, nuevo_dato);
+        }
+        break;
 
-            case 3:{
-                cout<<"Ingrese el nuevo Alias  : ";
-                sys::getline(nuevo_dato, 50);
-                modificarContacto(3, per.id_persona, nuevo_dato);
-            }break;
+        case 3:
+        {
+            cout<<"Ingrese el nuevo Alias  : ";
+            sys::getline(nuevo_dato, 50);
+            modificarContacto(3, per.id_persona, nuevo_dato);
+        }
+        break;
 
-            case 4:{
-                cout<<"Ingrese el nuevo Correo  : ";
-                sys::getline(nuevo_dato, 50);
-                modificarContacto(4, per.id_persona, nuevo_dato);
-            }break;
+        case 4:
+        {
+            cout<<"Ingrese el nuevo Correo  : ";
+            sys::getline(nuevo_dato, 50);
+            modificarContacto(4, per.id_persona, nuevo_dato);
+        }
+        break;
 
-            case 0:
-                salir = true;
+        case 0:
+            salir = true;
             break;
 
-            default:
-                cout<<"Opcion incorrecta"<<endl;
+        default:
+            cout<<"Opcion incorrecta"<<endl;
             break;
         }
     }

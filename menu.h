@@ -66,26 +66,26 @@ void menu_switch_mod_telefono()
 //----------------------------------------------------------------------
 void presentacion() //funcion de la pantalla de presentacion.
 {
-   //sys::cls();
-   cout<<endl;
-   cout<<"  #####¶--¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶--¶#####"<<endl;
-   cout<<"  #####¶--¶¶¶¶    ¶¶ ¶   ¶ ¶¶¶ ¶ ¶¶¶ ¶    ¶ ¶¶¶ ¶ ¶    ¶¶¶   ¶¶¶¶¶¶--¶#####"<<endl;
-   cout<<"  #####¶--¶¶¶¶ ¶¶¶ ¶ ¶ ¶¶¶  ¶¶ ¶ ¶¶¶ ¶ ¶¶¶¶  ¶¶ ¶ ¶ ¶¶¶ ¶ ¶¶¶ ¶¶¶¶¶--¶#####"<<endl;
-   cout<<"  #####¶--¶¶¶¶    ¶¶ ¶   ¶ ¶ ¶ ¶ ¶¶¶ ¶    ¶ ¶ ¶ ¶ ¶ ¶¶¶ ¶ ¶¶¶ ¶¶¶¶¶--¶#####"<<endl;
-   cout<<"  #####¶--¶¶¶¶ ¶¶¶ ¶ ¶ ¶¶¶ ¶¶  ¶¶ ¶ ¶¶ ¶¶¶¶ ¶¶  ¶ ¶ ¶¶¶ ¶ ¶¶¶ ¶¶¶¶¶--¶#####"<<endl;
-   cout<<"  #####¶--¶¶¶¶    ¶¶ ¶   ¶ ¶¶¶ ¶¶¶ ¶¶¶    ¶ ¶¶¶ ¶ ¶    ¶¶¶   ¶¶¶¶¶¶--¶#####"<<endl;
-   cout<<"  #####¶--¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶--¶#####"<<endl;
-   cout<<"  #####¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶#####"<<endl;
-   cout<<"  #####¶¶¶¶¶¶¶¶¶¶¶¶¶¶                                   ¶¶¶¶¶¶¶¶¶¶¶¶¶¶#####"<<endl;
-   cout<<"  #####¶¶¶¶¶¶¶¶¶¶¶¶¶¶         AGENDA ELECTRONICA        ¶¶¶¶¶¶¶¶¶¶¶¶¶¶#####"<<endl;
-   cout<<"  #####¶¶¶¶¶¶¶¶¶¶¶¶¶¶                2018               ¶¶¶¶¶¶¶¶¶¶¶¶¶¶#####"<<endl;
-   cout<<"  #####¶¶¶¶¶¶¶¶¶¶¶¶¶¶                                   ¶¶¶¶¶¶¶¶¶¶¶¶¶¶#####"<<endl;
-   cout<<"  #####¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶#####"<<endl;
-   cout<<"  #####¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶      MiSoftCPP     ¶¶¶¶¶¶¶¶¶#####"<<endl;
-   cout<<"  #####¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶#####"<<endl;
-   cout<<"  #########################################################################"<<endl;
-   cout<<endl;
-   sys::msleep(1);
+    //sys::cls();
+    cout<<endl;
+    cout<<"  #####¶--¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶--¶#####"<<endl;
+    cout<<"  #####¶--¶¶¶¶    ¶¶ ¶   ¶ ¶¶¶ ¶ ¶¶¶ ¶    ¶ ¶¶¶ ¶ ¶    ¶¶¶   ¶¶¶¶¶¶--¶#####"<<endl;
+    cout<<"  #####¶--¶¶¶¶ ¶¶¶ ¶ ¶ ¶¶¶  ¶¶ ¶ ¶¶¶ ¶ ¶¶¶¶  ¶¶ ¶ ¶ ¶¶¶ ¶ ¶¶¶ ¶¶¶¶¶--¶#####"<<endl;
+    cout<<"  #####¶--¶¶¶¶    ¶¶ ¶   ¶ ¶ ¶ ¶ ¶¶¶ ¶    ¶ ¶ ¶ ¶ ¶ ¶¶¶ ¶ ¶¶¶ ¶¶¶¶¶--¶#####"<<endl;
+    cout<<"  #####¶--¶¶¶¶ ¶¶¶ ¶ ¶ ¶¶¶ ¶¶  ¶¶ ¶ ¶¶ ¶¶¶¶ ¶¶  ¶ ¶ ¶¶¶ ¶ ¶¶¶ ¶¶¶¶¶--¶#####"<<endl;
+    cout<<"  #####¶--¶¶¶¶    ¶¶ ¶   ¶ ¶¶¶ ¶¶¶ ¶¶¶    ¶ ¶¶¶ ¶ ¶    ¶¶¶   ¶¶¶¶¶¶--¶#####"<<endl;
+    cout<<"  #####¶--¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶--¶#####"<<endl;
+    cout<<"  #####¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶#####"<<endl;
+    cout<<"  #####¶¶¶¶¶¶¶¶¶¶¶¶¶¶                                   ¶¶¶¶¶¶¶¶¶¶¶¶¶¶#####"<<endl;
+    cout<<"  #####¶¶¶¶¶¶¶¶¶¶¶¶¶¶         AGENDA ELECTRONICA        ¶¶¶¶¶¶¶¶¶¶¶¶¶¶#####"<<endl;
+    cout<<"  #####¶¶¶¶¶¶¶¶¶¶¶¶¶¶                2018               ¶¶¶¶¶¶¶¶¶¶¶¶¶¶#####"<<endl;
+    cout<<"  #####¶¶¶¶¶¶¶¶¶¶¶¶¶¶                                   ¶¶¶¶¶¶¶¶¶¶¶¶¶¶#####"<<endl;
+    cout<<"  #####¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶#####"<<endl;
+    cout<<"  #####¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶      MiSoftCPP     ¶¶¶¶¶¶¶¶¶#####"<<endl;
+    cout<<"  #####¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶#####"<<endl;
+    cout<<"  #########################################################################"<<endl;
+    cout<<endl;
+    sys::msleep(1);
 }
 
 //======================================================================
@@ -116,7 +116,8 @@ void despedida()
 // PARAMETROS: NADA
 // DEVUELVE  : NADA
 //----------------------------------------------------------------------
-void ayuda(){
+void ayuda()
+{
 
     sys::cls();
     cout << " #-=========================================================-#"<<endl;
@@ -172,13 +173,13 @@ void mostrarMenuPrincipal()
     sys::cls();
     cout<< " ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»"<<endl;
     cout<< " º               AGENDA ELECTRONICA               º"<<endl;
-    cout<< " ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶"<<endl;
+    cout<< " ºÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄº"<<endl;
     cout<< " º                                                º"<<endl;
     cout<< " º  C ) C A R G A R                               º"<<endl;
     cout<< " º  M ) M O D I F I C A R                         º"<<endl;
     cout<< " º  B ) B U S C A R                               º"<<endl;
     cout<< " º  L ) L I S T A R                               º"<<endl;
-    cout<< " °  A ) R E C U P E R A R  C O N T A C T O        °"<<endl;
+    cout<< " °  A ) R E C U P E R A R                         º"<<endl;
     cout<< " º  D ) E L I M I N A R                           º"<<endl;
     cout<< " º  H ) A Y U D A                                 º"<<endl;
     cout<< " º  S ) S A L I R                                 º"<<endl;
@@ -193,19 +194,50 @@ void mostrarMenuPrincipal()
 // PARAMETROS: NADA.
 // DEVUELVE  : NADA.
 //---------------------------------------------------------------------------
-void mostrar_Sub_Menu_buscar()
+void mostrar_Sub_Menu_buscar(int mod_bus)
 {
-    cout<< " ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»"<<endl;
-    cout<< " º           OPCIONES DE BUSQUEDA           º"<<endl;
-    cout<< " ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶"<<endl;
-    cout<< " º                                          º"<<endl;
-    cout<< " º  A ) Buscar por Apellido                 º"<<endl;
-    cout<< " º  B ) Buscar por Nombre                   º"<<endl;
-    cout<< " º  C ) Buscar por Alias                    º"<<endl;
-    cout<< " º  D ) Volver a Menu Principal             º"<<endl;
-    cout<< " º                                          º"<<endl;
-    cout<< " ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\n"<<endl;
-    cout<< "INGRESE UNA OPCION: ";
+    if (mod_bus==2)
+    {
+        cout<< " ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»"<<endl;
+        cout<< " º           OPCIONES DE BUSQUEDA           º"<<endl;
+        cout<< " ºÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄº"<<endl;
+        cout<< " º                                          º"<<endl;
+        cout<< " º  A ) Buscar por Apellido                 º"<<endl;
+        cout<< " º  B ) Buscar por Nombre                   º"<<endl;
+        cout<< " º  C ) Buscar por Alias                    º"<<endl;
+        cout<< " º  D ) Volver a Menu Principal             º"<<endl;
+        cout<< " º                                          º"<<endl;
+        cout<< " ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\n"<<endl;
+        cout<< "INGRESE UNA OPCION: ";
+    }
+    else if(mod_bus==1)
+    {
+        cout<< " ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»"<<endl;
+        cout<< " ºINGRESE OPCION DE BUSQUEDA PARA MODIFICAR º"<<endl;
+        cout<< " ºÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄº"<<endl;
+        cout<< " º                                          º"<<endl;
+        cout<< " º  A ) Buscar por Apellido                 º"<<endl;
+        cout<< " º  B ) Buscar por Nombre                   º"<<endl;
+        cout<< " º  C ) Buscar por Alias                    º"<<endl;
+        cout<< " º  D ) Volver a Menu Principal             º"<<endl;
+        cout<< " º                                          º"<<endl;
+        cout<< " ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\n"<<endl;
+        cout<< "INGRESE UNA OPCION: ";
+    }
+    else
+    {
+        cout<< " ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»"<<endl;
+        cout<< " º INGRESE OPCION DE BUSQUEDA PARA ELIMINAR º"<<endl;
+        cout<< " ºÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄº"<<endl;
+        cout<< " º                                          º"<<endl;
+        cout<< " º  A ) Buscar por Apellido                 º"<<endl;
+        cout<< " º  B ) Buscar por Nombre                   º"<<endl;
+        cout<< " º  C ) Buscar por Alias                    º"<<endl;
+        cout<< " º  D ) Volver a Menu Principal             º"<<endl;
+        cout<< " º                                          º"<<endl;
+        cout<< " ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼\n"<<endl;
+        cout<< "INGRESE UNA OPCION: ";
+    }
 }
 
 //===========================================================================
@@ -214,7 +246,7 @@ void mostrar_Sub_Menu_buscar()
 // PARAMETROS: NADA.
 // DEVUELVE  : Si desea salir del programa o no.
 //---------------------------------------------------------------------------
-void sub_Menu_Buscar(int mod_bus)
+bool sub_Menu_Buscar(int mod_bus)
 {
     //bool result = false;
     bool salir= false;//variable que controla el ciclo del menu
@@ -225,79 +257,73 @@ void sub_Menu_Buscar(int mod_bus)
     while(!salir)
     {
         sys::cls();
-        mostrar_Sub_Menu_buscar();
+        mostrar_Sub_Menu_buscar(mod_bus);
         cin.get(opcion);
         cin.ignore();
 
         switch(opcion)//Evaluo la variable opcion
         {
-            case 'a':
-            case 'A':
-            {
-                if( !buscar(1))
-                {
-                    encontro = false; // Si no encontro, no se puede modificar
-                    cout << "No se encontro el Apellido buscado...";
-                    cin.get();
-                }
-                else{
-                     //mostrar_contactosEncontrados();
-                    cin.get();
-                }
-            }break;
-
-            case 'b':
-            case 'B':
-            {
-                if( !buscar(2) )
-                {
-                    encontro = false; // Si no encontro, no se puede modificar
-                    cout << "No se encontro el Nombre buscado...";
-                    cin.get();
-                }
-                else{
-                    //mostrar_contactosEncontrados();
-                    cin.get();
-                }
-            }break;
-
-            case 'c':
-            case 'C':
-            {
-                if( !buscar(3) )
-                {
-                    encontro = false; // Si no encontro, no se puede modificar
-                    cout << "No se encontro el Apodo buscado...";
-                    cin.get();
-                }
-                else{
-                    //mostrar_contactosEncontrados();
-                    cin.get();
-                }
-            }break;
-
-            case 'd':
-            case 'D':
+        case 'a':
+        case 'A':
+        {
+            if(!buscar(1))
             {
                 encontro = false; // Si no encontro, no se puede modificar
-//                result= true;//Para salir del programa
-                salir=true;
-            }break;
-
-            default:
-            {
-                cout <<"Opcion no valida!!!";
+                cout << "No se encontro el contacto buscado, presione enter para continuar...";
                 cin.get();
-            }break;
+            }else salir=true;
+        }
+        break;
+
+        case 'b':
+        case 'B':
+        {
+            if(!buscar(2))
+            {
+                encontro = false; // Si no encontro, no se puede modificar
+                cout << "No se encontro el contacto buscado, presione enter para continuar...";
+                cin.get();
+            }else salir=true;
+        }
+        break;
+
+        case 'c':
+        case 'C':
+        {
+            if( !buscar(3) )
+            {
+                encontro = false; // Si no encontro, no se puede modificar
+                cout << "No se encontro el contacto buscado, presione enter para continuar...";
+                cin.get();
+            }else salir=true;
+        }
+        break;
+
+        case 'd':
+        case 'D':
+        {
+            return false;
+        }
+        break;
+
+        default:
+        {
+            cout <<"Opcion no valida!!! presione enter para continuar";
+            cin.get();
+        }
         }
 
-        if ( mod_bus == 1 || mod_bus == 3 )
-        {
-            if (encontro == true)
-                preguntar_id(mod_bus);
-        }
     }
-    //return result;
+    if ( mod_bus == 1 || mod_bus == 3 && encontro)
+    {
+        preguntar_id(mod_bus);
+    }
+    else
+    {
+        cout<<"no se encontro resultado"<<endl;
+    }
+    return true;
+
 }
 
 ////===========================================================================
@@ -362,7 +388,8 @@ void menu_mod_contacto()
 // PARAMETROS: NADA.
 // DEVUELVE  : NADA.
 //---------------------------------------------------------------------------
-void menuPrincipal(){
+void menuPrincipal()
+{
 
     contar_ID();
 
@@ -377,60 +404,70 @@ void menuPrincipal(){
 
         switch(opcion)
         {
-            case 'c':
-            case 'C':
-            {
-                cargar_persona();
-            }break;
+        case 'c':
+        case 'C':
+        {
+            cargar_persona();
+        }
+        break;
 
-            case 'm':
-            case 'M':
-            {
-//                sub_Menu_Buscar(1);
-            }break;
+        case 'm':
+        case 'M':
+        {
+            //Modificar contacto
+            sub_Menu_Buscar(1);
+        }
+        break;
 
-            case 'B':
-            case 'b':
-            {
-  //              sub_Menu_Buscar(2);
-            }break;
+        case 'B':
+        case 'b':
+        {
+            sub_Menu_Buscar(2);
+        }
+        break;
+        case 'D':
+        case 'd':
+        {
+            sub_Menu_Buscar(3);
+            //elminar contacto
+        }
+        break;
 
-            case 'D':
-            case 'd':
-            {
-    //            sub_Menu_Buscar(3);
-            }break;
+        case 'l':
+        case 'L':
+        {
+            //listado de a 5 conactos
+            mostrar_contactos();
+        }
+        break;
+        case 'a':
+        case 'A':
+        {
+            mostrar_contactos_eliminados();
+        }
+        break;
 
-            case 'l':
-            case 'L':
-            {
-                mostrar_contactos();
-            }break;
-            case 'a':
-            case 'A':
-            {
-      //          mostrar_contactos_eliminados();
-            }break;
+        case 'H':
+        case 'h':
+        {
+            ayuda();
+        }
+        break;
 
-            case 'H':
-            case 'h':
-            {
-                ayuda();
-                // crear funcion ayuda
-            }break;
+        case 'S':
+        case 's':
+        {
+            despedida();
+            salir=true;
+        }
+        break;
 
-            case 'S':
-            case 's':
-            {
-                despedida();
-                salir=true;
-            }break;
-
-            default:
-            {
-                cout <<"Opcion no valida!!!";
-                cin.get();
-            }break;
+        default:
+        {
+            cout <<"Opcion no valida, presione enter para ingresa otra opcion...!!!";
+            cin.get();
+        }
+        break;
         }
     }
 }

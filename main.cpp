@@ -44,9 +44,9 @@
 // Si este programa se va a compilar en Windows, descomente las tres lineas
 // siguientes, y comente las tres lineas de "COMPILACION EN LINUX".
 //-----------------------------------------------------------------------------
-//#ifndef _WIN32
-//  # define _WIN32
-//#endif
+#ifndef _WIN32
+# define _WIN32
+#endif
 
 //=============================================================================
 // COMPILACION EN LINUX
@@ -54,9 +54,9 @@
 // Si este programa se va a compilar en Linux, descomente las tres lineas
 // siguientes, y comente las tres lineas de "COMPILACION EN WINDOWS".
 //-----------------------------------------------------------------------------
-#ifndef _LINUX
-  # define _LINUX
-#endif
+//#ifndef _LINUX
+//# define _LINUX
+//#endif
 
 //*****************************************************************************
 //                             INCLUSIONES ESTANDAR
@@ -82,8 +82,11 @@ using namespace std;
 //==============================================================================
 // FUNCION PRINCIPAL - PUNTO DE INICIO DEL PROYECTO
 //------------------------------------------------------------------------------
+
+
 int main()
 {
+    AltEnter();
     presentacion();
     menuPrincipal();
     //--------------------------------------------------------------------------

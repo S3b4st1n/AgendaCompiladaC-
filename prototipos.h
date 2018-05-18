@@ -9,12 +9,12 @@ int ID_per, ID_tel = 0;
 struct persona
 {
     int id_persona;
-    char nombre[50];
-    char apellido[50];
-    char alias[50];
-    char domicilio[50];
-    char email[50];
-    bool eliminado;
+    char nombre[50]={'\0'};
+    char apellido[50]={'\0'};
+    char alias[50]={'\0'};
+    char domicilio[50]={'\0'};
+    char email[50]={'\0'};
+    bool eliminado=true;
 };
 
 struct telefono
@@ -36,9 +36,14 @@ void mostrarTelefonosByContacto(int id_persona);
 void mostrarTelefonosEliminadosByContacto(int id_persona);
 void eliminar_telefono(int id_telefono);
 void editar_telefono(persona per, int id_telefono, int opcion, char* nuevo_numero, char* nuevo_tipo);
+
 //misFunciones.h
+void AltEnter();
 void contar_ID();
 bool esNumero(char* cadena);
+void inicializar_vector(int *vec,int tam);
+int retorna_encontrados(struct persona per[][5]);
+void inicializar_matriz(struct persona per[][5], int fila, int columna);
 void mostrar_contactos();
 void mostrar_opcion_busqueda(int opc);
 bool esMinuscula (char caracter);
@@ -53,6 +58,8 @@ void mostrar_contactosEncontrados();
 void recuperar_contacto(int id_contacto);
 void modificar_lista_contactos(persona per, int id_telefono);
 void mostrar_contactos_eliminados();
+void mostrarIDenTabla(int id);
+void mostrarEspacioTextoEnTabla(char * texto, int cant);
 void mostrar_contacto(persona per);
 void modificar_contacto(persona per);
 void modificar_registro(persona per);
@@ -75,11 +82,11 @@ void ayuda();
 void presentacion();
 void mostrarMenuPrincipal();
 void mostrar_Sub_Menu_buscar();
-void sub_Menu_Buscar(int mod_bus);
+bool sub_Menu_Buscar(int mod_bus);
 void menuPrincipal();
 void menu_mod_contacto();
 
-
+#include "CSYSTEM/csystem.h"
 #include "registroTelefonos.h"
 #include "registroPersonas.h"
 #include "misFunciones.h"
