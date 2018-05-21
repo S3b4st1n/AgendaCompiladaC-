@@ -51,7 +51,6 @@ AYUDANTE : Fernando Calabuig.
 		<Unit filename="misFunciones.h" />
 		<Unit filename="prototipos.h" />
 		<Unit filename="registroPersonas.h" />
-		<Unit filename="registroPersonasEncontradas.h" />
 		<Unit filename="registroTelefonos.h" />
 		<Extensions>
 			<code_completion />

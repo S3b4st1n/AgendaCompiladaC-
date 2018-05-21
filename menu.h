@@ -1,6 +1,6 @@
 //#############################################################################
 // ARCHIVO             : main.cpp
-// AUTOR/ES            : Mansilla Francisco
+// AUTOR/ES            : Mansilla Francisco & Mercado Sebastian
 // VERSION             : 0.02 beta.
 // FECHA DE CREACION   : 31/08/2017.
 // ULTIMA ACTUALIZACION: 18/09/2017.
@@ -31,6 +31,7 @@ void menu_mod_telefonos()
     cout<< "|  1) - AGREGAR TELEFONOS          |"<<endl;
     cout<< "|  2) - MODIFICAR TELEFONOS        |"<<endl;
     cout<< "|  3) - RECUPERAR TELEFONO         |"<<endl;
+    cout<< "|  4) - ELIMINAR  TELEFONO         |"<<endl;
     cout<< "|  0) - VOLVER AL MENU PRINCIPAL   |"<<endl;
     cout<< "|                                  |"<<endl;
     cout<< " =================================="<<endl;
@@ -126,13 +127,11 @@ void ayuda()
     cout << " # Permite ingresar los datos de un contacto                 #" << endl;
     cout << " # como nombre, apellido, direccion                          #" << endl;
     cout << " # nro de telefono , direccion E-Mail.                       #" << endl;
-    cout << " #-=========================================================-#"<<endl<< endl;
     cout << " #-=========================================================-#"<<endl;
     cout << " #                       BUSCAR CONTACTO                     #" << endl;
     cout << " #-----------------------------------------------------------#"<<endl;
     cout << " # Permite buscar un contacto                                #"<<endl;
-    cout << " # por nombre, apellido u apodo.                             #" << endl;
-    cout << " #-=========================================================-#"<<endl<< endl;
+    cout << " # por nombre, apellido u apodo no es case sensitive.        #" << endl;
     cout << " #-=========================================================-#"<<endl;
     cout << " #                    MODIFICAR CONTACTO                     #" << endl;
     cout << " #-----------------------------------------------------------#"<<endl;
@@ -140,26 +139,31 @@ void ayuda()
     cout << " # del contacto ( nombre, apellido, direccion,               #" << endl;
     cout << " # nro de telefono, direccion E-Mail) o sus telefonos        #" << endl;
     cout << " # (agregar, eliminar, modificar tipo y numeros).            #" << endl;
-    cout << " #-=========================================================-#"<<endl<< endl;
     cout << " #-=========================================================-#"<<endl;
     cout << " #                     LISTAR CONTACTO                       #" << endl;
     cout << " #-----------------------------------------------------------#"<<endl;
     cout << " # muestra todos los contactos con sus respectivos datos.    #" << endl;
     cout << " # si la lista supera los 5 contactos,                       #" << endl;
     cout << " # se mostraran en tandas de a 5.                            #" << endl;
-    cout << " #-=========================================================-#"<<endl<< endl;
+    cout << " # Los contactos son listados, con la flechas se pasa de un  #" << endl;
+    cout << " # contacto al otro con el enter se ingresa el id para       #" << endl;
+    cout << " # recuperar el contacto                                     #" << endl;
     cout << " #-=========================================================-#"<<endl;
     cout << " #                    ELIMINAR CONTACTO                      #" << endl;
     cout << " #-----------------------------------------------------------#"<<endl;
     cout << " # Tras una busqueda permite eliminar el contacto deseado.   #" << endl;
-    cout << " #-=========================================================-#"<<endl<< endl;
     cout << " #-=========================================================-#"<<endl;
     cout << " #                RECUPERAR CONTACTO ELIMINADO               #" << endl;
     cout << " #-----------------------------------------------------------#"<<endl;
     cout << " # Recupera un contacto eliminado mediante la eleccion       #" << endl;
     cout << " # de un ID tanto de contacto como de telefono.              #" << endl;
-    cout << " #-=========================================================-#"<<endl<< endl;
+    cout << " # Los contactos son listados, con la flechas se pasa de un  #" << endl;
+    cout << " # contacto al otro con el enter se ingresa el id para       #" << endl;
+    cout << " # recuperar el contacto                                     #" << endl;
+    cout << " #-=========================================================-#"<<endl;
+    cout<<"\t  PRESIONE ENTER PARA CONTINUAR ...";
     cin.get();
+    sys::cls();
 }
 
 //===========================================================================
@@ -170,6 +174,7 @@ void ayuda()
 //---------------------------------------------------------------------------
 void mostrarMenuPrincipal()
 {
+    char x=186;
     sys::cls();
     cout<< " ษออออออออออออออออออออออออออออออออออออออออออออออออป"<<endl;
     cout<< " บ               AGENDA ELECTRONICA               บ"<<endl;
@@ -179,7 +184,7 @@ void mostrarMenuPrincipal()
     cout<< " บ  M ) M O D I F I C A R                         บ"<<endl;
     cout<< " บ  B ) B U S C A R                               บ"<<endl;
     cout<< " บ  L ) L I S T A R                               บ"<<endl;
-    cout<< " ฐ  A ) R E C U P E R A R                         บ"<<endl;
+    cout<<" "<<x<<"  A ) R E C U P E R A R                         บ"<<endl;
     cout<< " บ  D ) E L I M I N A R                           บ"<<endl;
     cout<< " บ  H ) A Y U D A                                 บ"<<endl;
     cout<< " บ  S ) S A L I R                                 บ"<<endl;
@@ -205,7 +210,8 @@ void mostrar_Sub_Menu_buscar(int mod_bus)
         cout<< " บ  A ) Buscar por Apellido                 บ"<<endl;
         cout<< " บ  B ) Buscar por Nombre                   บ"<<endl;
         cout<< " บ  C ) Buscar por Alias                    บ"<<endl;
-        cout<< " บ  D ) Volver a Menu Principal             บ"<<endl;
+        cout<< " บ  D ) Ayuda                               บ"<<endl;
+        cout<< " บ  S ) Volver a Menu Principal             บ"<<endl;
         cout<< " บ                                          บ"<<endl;
         cout<< " ศออออออออออออออออออออออออออออออออออออออออออผ\n"<<endl;
         cout<< "INGRESE UNA OPCION: ";
@@ -219,7 +225,8 @@ void mostrar_Sub_Menu_buscar(int mod_bus)
         cout<< " บ  A ) Buscar por Apellido                 บ"<<endl;
         cout<< " บ  B ) Buscar por Nombre                   บ"<<endl;
         cout<< " บ  C ) Buscar por Alias                    บ"<<endl;
-        cout<< " บ  D ) Volver a Menu Principal             บ"<<endl;
+        cout<< " บ  D ) Ayuda                               บ"<<endl;
+        cout<< " บ  S ) Volver a Menu Principal             บ"<<endl;
         cout<< " บ                                          บ"<<endl;
         cout<< " ศออออออออออออออออออออออออออออออออออออออออออผ\n"<<endl;
         cout<< "INGRESE UNA OPCION: ";
@@ -233,7 +240,8 @@ void mostrar_Sub_Menu_buscar(int mod_bus)
         cout<< " บ  A ) Buscar por Apellido                 บ"<<endl;
         cout<< " บ  B ) Buscar por Nombre                   บ"<<endl;
         cout<< " บ  C ) Buscar por Alias                    บ"<<endl;
-        cout<< " บ  D ) Volver a Menu Principal             บ"<<endl;
+        cout<< " บ  D ) Ayuda                               บ"<<endl;
+        cout<< " บ  S ) Volver a Menu Principal             บ"<<endl;
         cout<< " บ                                          บ"<<endl;
         cout<< " ศออออออออออออออออออออออออออออออออออออออออออผ\n"<<endl;
         cout<< "INGRESE UNA OPCION: ";
@@ -302,10 +310,15 @@ bool sub_Menu_Buscar(int mod_bus)
         case 'd':
         case 'D':
         {
+            ayuda();
+        }
+        break;
+        case 's':
+        case 'S':
+        {
             return false;
         }
         break;
-
         default:
         {
             cout <<"Opcion no valida!!! presione enter para continuar";

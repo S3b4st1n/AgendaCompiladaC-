@@ -71,7 +71,7 @@
 
 1524790377 /home/iintrepyd0/agendaLoca-master/registroPersonasEncontradas.h
 
-1526679340 source:c:\users\administrador\downloads\agendacompiladac--master\main.cpp
+1526846038 source:c:\users\administrador\downloads\agendacompiladac--master\main.cpp
 	<iostream>
 	<cstdlib>
 	<cstdio>
@@ -89,20 +89,21 @@
 	<windows.h>
 	<unistd.h>
 
-1526676808 c:\users\administrador\downloads\agendacompiladac--master\prototipos.h
+1526834929 c:\users\administrador\downloads\agendacompiladac--master\prototipos.h
 	"CSYSTEM/csystem.h"
 	"registroTelefonos.h"
 	"registroPersonas.h"
 	"misFunciones.h"
 	"menu.h"
 
-1525902905 c:\users\administrador\downloads\agendacompiladac--master\registrotelefonos.h
+1526856330 c:\users\administrador\downloads\agendacompiladac--master\registrotelefonos.h
 	"CSYSTEM/csystem.h"
 
-1525904796 c:\users\administrador\downloads\agendacompiladac--master\registropersonas.h
+1526857329 c:\users\administrador\downloads\agendacompiladac--master\registropersonas.h
 	"prototipos.h"
+	<conio.h>
 
-1526679785 c:\users\administrador\downloads\agendacompiladac--master\misfunciones.h
+1526856527 c:\users\administrador\downloads\agendacompiladac--master\misfunciones.h
 	"menu.h"
 	"registroPersonas.h"
 	"registroPersonasEncontradas.h"
@@ -110,7 +111,7 @@
 	<windows.h>
 	<conio.h>
 
-1525904796 c:\users\administrador\downloads\agendacompiladac--master\menu.h
+1526852932 c:\users\administrador\downloads\agendacompiladac--master\menu.h
 	"misFunciones.h"
 	"registroPersonas.h"
 	"registroPersonasEncontradas.h"

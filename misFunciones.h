@@ -1,9 +1,9 @@
 //#############################################################################
-// ARCHIVO             : main.cpp
-// AUTOR/ES            : Mansilla Francisco
+// ARCHIVO             : misFunciones.h
+// AUTOR/ES            : Mansilla Francisco & Mercado Sebastian
 // VERSION             : 0.02 beta.
-// FECHA DE CREACION   : 31/08/2017.
-// ULTIMA ACTUALIZACION: 18/09/2017.
+// FECHA DE CREACION   : 29/04/2018.
+// ULTIMA ACTUALIZACION: 19/05/2018.
 // LICENCIA            : GPL (General Public License) - Version 3.
 //****************************************************************************
 #ifndef MISFUNCIONES_H_INCLUDED
@@ -113,7 +113,6 @@ bool buscar(int opc)
                 }
             }
             break;
-
             default:
             {
 
@@ -207,10 +206,10 @@ void inicializar_vector(int *vec,int tam)
 ////===========================================================================
 //// FUNCION   : int retorna_encontrados(struct *persona per)
 //// ACCION    :
-//// PARAMETROS: NADA.
-//// DEVUELVE  : NADA.
+//// PARAMETROS: struct persona per[][5], bool eliminado
+//// DEVUELVE  : cantidad de contactos.
 ////---------------------------------------------------------------------------
-int retorna_encontrados(struct persona per[][5])
+int retorna_encontrados(struct persona per[][5], bool eliminado)
 {
     int cont=0, i=0;
     FILE *arch_per;
@@ -220,9 +219,8 @@ int retorna_encontrados(struct persona per[][5])
         exit(99);
     while( fread(&reg, sizeof(persona), 1, arch_per))
     {
-        if(reg.eliminado==false)
+        if(reg.eliminado==eliminado)
         {
-
             per[i][cont]=reg;
             cont=cont+1;
             if(cont==5)
@@ -236,6 +234,12 @@ int retorna_encontrados(struct persona per[][5])
     return cont;
 }
 
+////===========================================================================
+//// FUNCION   : void inicializar_matriz(struct persona per[][5], int fila, int columna)
+//// ACCION    :
+//// PARAMETROS: struct persona per[][5], int fila, int columna
+//// DEVUELVE  : NADA.
+////---------------------------------------------------------------------------
 void inicializar_matriz(struct persona per[][5], int fila, int columna)
 {
     int f=0,c=0;
@@ -260,40 +264,56 @@ void mostrar_contactos()
     sys::cls();
     persona per[100][5];
     inicializar_matriz(per,100,5);
-    int	cont = retorna_encontrados(per);
+    int	cont = retorna_encontrados(per,false);
     while(flag)
     {
-        mostrarContacto(per[pagina][i]);
-        mostrarTelefonosByContacto(per[pagina][i].id_persona);
-        i++;
-
-        if(i==5 || per[pagina][i].id_persona ==-1)
+        if(per[pagina][i].id_persona>=0)
         {
-            cout<<"\t\t\t <- Anterior \t\t\t Siguiente -> \t\t\t Esc=Salir";
-            while(true)
+            mostrarContacto(per[pagina][i]);
+            mostrarTelefonosByContacto(per[pagina][i].id_persona);
+            i++;
+
+            if(i==5 || per[pagina][i].id_persona ==-1)
             {
-                tecla=getch();
-                if(tecla==77 && per[pagina][i+1].id_persona != -1 )  //siguiente
+                cout<<"\t\t <- Anterior \t\t Siguiente -> \t\t Esc=Salir \t\t A=Ayuda";
+                while(true)
                 {
-                    pagina=pagina+1;
-                    i=0;
-                    sys::cls();
-                    break;
-                }
-                if(tecla==75 && pagina-1>=0)  //anterior
-                {
-                    pagina=pagina-1;
-                    i=0;
-                    sys::cls();
-                    break;
-                }
-                if(tecla==27)
-                {
-                    flag=false;
-                    break;
+                    tecla=getch();
+                    if(tecla==77 && per[pagina][i+1].id_persona != -1 )  //siguiente
+                    {
+                        pagina=pagina+1;
+                        i=0;
+                        sys::cls();
+                        break;
+                    }
+                    if(tecla==75 && pagina-1>=0)  //anterior
+                    {
+                        pagina=pagina-1;
+                        i=0;
+                        sys::cls();
+                        break;
+                    }
+                    if(tecla==27)
+                    {
+                        flag=false;
+                        break;
+                    }
+                    if(tecla==97)
+                    {
+                        ayuda();
+                        i=0;
+                        break;
+                    }
                 }
             }
         }
+        else if(i==0)
+        {
+            cout<<"no se encontraro contactos a listar"<<endl;
+            system("pause");
+            flag=false;
+        }
+
     }
 }
 
@@ -319,6 +339,34 @@ void mostrar_opcion_busqueda(int opc)
         cout<<"Ingrese Alias:  ";
         break;
     }
+}
+
+//=============================================================================
+// FUNCION   : void validacionCadena(char *campo, char *texto)
+// ACCION    : valida cadena
+// PARAMETROS: char *campo, char *texto
+// DEVUELVE  : nada
+//-----------------------------------------------------------------------------
+bool validacionCadena(char *campo, char *texto)
+{
+    do
+    {
+        cout<< " Ingrese el "<< texto << " del contacto: ";
+        sys::getline(campo, 50);
+        if(strcmp(campo,"0")==0||strcmp(campo,"1")==0)
+        {
+            return false;
+        }
+        if(strlen(campo) < 1)
+        {
+            sys::cls();
+            cout<<"INGRESE 0 PARA SALIR"<<endl;
+            cout<< " El " << texto << " no puede estar vacio...\n Ingrese nuevamente el " << texto << " del contacto: ";
+            sys::getline(campo, 50);
+        }
+    }
+    while(strlen(campo) < 1);
+    return true;
 }
 
 //=============================================================================

@@ -1,11 +1,11 @@
 //#############################################################################
 // ARCHIVO             : main.cpp
-// AUTOR/ES            : Mansilla Francisco
+// AUTOR/ES            : Mansilla Francisco & Mercado Sebastian
 // VERSION             : 0.02 beta.
-// FECHA DE CREACION   : 31/08/2017.
-// ULTIMA ACTUALIZACION: 18/09/2017.
+// FECHA DE CREACION   : 29/04/2018.
+// ULTIMA ACTUALIZACION: 19/05/2018.
 // LICENCIA            : GPL (General Public License) - Version 3.
-//
+//****************************************************************************
 //  **************************************************************************
 //  * El software libre no es una cuestion economica sino una cuestion etica *
 //  **************************************************************************
@@ -86,9 +86,9 @@ using namespace std;
 
 int main()
 {
-    AltEnter();
-    presentacion();
-    menuPrincipal();
+AltEnter();
+presentacion();
+menuPrincipal();
     //--------------------------------------------------------------------------
     // FIN DE LA FUNCION main() SIN ERRORES.
     //--------------------------------------------------------------------------
